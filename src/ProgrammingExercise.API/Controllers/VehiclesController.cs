@@ -6,6 +6,8 @@ namespace ProgrammingExercise.Api.Controllers;
 [ApiController]
 public class VehiclesController : ControllerBase
 {
+
+    //test branch validation rule
     [HttpPost]
     public IActionResult AddVehicle()
     {
