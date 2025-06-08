@@ -53,6 +53,6 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetAll() => Ok();
+    public IActionResult GetAll() => Ok(_service.GetAll());
 
 }
