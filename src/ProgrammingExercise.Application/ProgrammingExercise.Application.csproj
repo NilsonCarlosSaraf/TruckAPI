@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProgrammingExercise.Communication\ProgrammingExercise.Communication.csproj" />
+    <ProjectReference Include="..\ProgrammingExercise.Domain\ProgrammingExercise.Domain.csproj" />
+    <ProjectReference Include="..\ProgrammingExercise.Exception\ProgrammingExercise.Exception.csproj" />
+  </ItemGroup>
+
 </Project>

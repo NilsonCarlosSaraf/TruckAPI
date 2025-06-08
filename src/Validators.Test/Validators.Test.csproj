@@ -17,6 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CommonTestUtilities\CommonTestUtilities.csproj" />
+    <ProjectReference Include="..\ProgrammingExercise.Application\ProgrammingExercise.Application.csproj" />
+    <ProjectReference Include="..\ProgrammingExercise.Communication\ProgrammingExercise.Communication.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 

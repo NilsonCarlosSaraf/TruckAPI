@@ -1,6 +1,0 @@
-@ProgrammingExercise.API_HostAddress = http://localhost:5285
-
-GET {{ProgrammingExercise.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
