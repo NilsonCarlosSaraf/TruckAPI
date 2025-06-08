@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProgrammingExercise.Application.Services;
 using ProgrammingExercise.Communication.DTO;
+using ProgrammingExercise.Domain.Entities;
 using ProgrammingExercise.ExceptionsBase;
 
 namespace ProgrammingExercise.Api.Controllers;
@@ -34,21 +35,23 @@ public class VehiclesController : ControllerBase
         }
     }
 
-    [HttpPut()]
-    public IActionResult UpdateColor()
+    [HttpPut("{series}/{number}/color")]
+    public IActionResult UpdateColor(string series, uint number, [FromBody] string color)
     {
-        
+
+        _service.UpdateColor(new ChassisId { Series = series, Number = number }, color);
         return NoContent();
+    }
+
+    [HttpGet("{series}/{number}")]
+    public IActionResult GetVehicle(string series, uint number)
+    {
+
+        var vehicle = _service.GetByChassisId(new ChassisId { Series = series, Number = number });
+        return vehicle == null ? NotFound() : Ok(vehicle);
     }
 
     [HttpGet]
     public IActionResult GetAll() => Ok();
-
-    [HttpGet("{series}/{number}")]
-    public IActionResult GetVehicle()
-    {
-       
-        return Ok();
-    }
 
 }
