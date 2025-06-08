@@ -1,17 +1,37 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using ProgrammingExercise.Application.Services;
+using ProgrammingExercise.Communication.DTO;
+using ProgrammingExercise.ExceptionsBase;
 
 namespace ProgrammingExercise.Api.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 public class VehiclesController : ControllerBase
 {
+    private readonly IVehicleService _service;
 
-    //test branch validation rule
-    [HttpPost]
-    public IActionResult AddVehicle()
+    public VehiclesController(IVehicleService service)
     {
-        return Created();
+        _service = service;
+    }
+ 
+    [HttpPost]
+    public IActionResult AddVehicle([FromBody] VehicleDto dto)
+    {
+        try
+        {
+            var vehicle = dto.ToDomain();
+            _service.AddVehicle(vehicle);
+            return CreatedAtAction(nameof(GetVehicle), new { series = dto.Series, number = dto.Number }, vehicle);
+        }
+        catch (VehicleAlreadyExistsException ex)
+        {
+            return Conflict(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpPut()]
