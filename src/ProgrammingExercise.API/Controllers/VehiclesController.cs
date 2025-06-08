@@ -36,10 +36,11 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpPut("{series}/{number}/color")]
-    public IActionResult UpdateColor(string series, uint number, [FromBody] string color)
+    public IActionResult UpdateColor(string series, uint number, [FromBody] UpdateColorDto dto)
     {
 
-        _service.UpdateColor(new ChassisId { Series = series, Number = number }, color);
+        var chassisId = new ChassisId { Series = series, Number = number };
+        _service.UpdateColor(chassisId, dto.Color);
         return NoContent();
     }
 
