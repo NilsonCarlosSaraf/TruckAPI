@@ -21,6 +21,16 @@ This is a simple .NET 8 Web API project that manages a fleet of vehicles, includ
 
 ---
 
+## Example of a working payload for the POST endpoint:
+
+the field "type" will only accept "car","bus" or "truck" as a value.
+{
+"series": "cr25",
+"number": 0,
+"type": "car",
+"color": "blue"
+}
+
 ## 📦 How to Run
 
 1. **Clone the repository**
